@@ -1,0 +1,47 @@
+
+a {
+  color: #3273dc;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #363636;
+}
+
+hr {
+  background-color: #dbdbdb;
+  border: none;
+  display: block;
+  height: 1px;
+  margin: 1.5rem 0;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+}
+
+input {
+  vertical-align: baseline;
+}
+
+.title {
+  color: #363636;
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.125;
+}
+
+.content {
+  margin: 50px;
+  padding-bottom: 10px);
+  padding-left: 100px);
+  padding-right: 1px);
+  padding-top: 10px);
+} 
+
+.pagination { 
+    margin:40px 0; 
+    font-weight:bold;
+}

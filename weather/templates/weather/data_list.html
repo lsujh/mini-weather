@@ -1,0 +1,80 @@
+{% load static %}
+<script type="text/javascript" src="{% url 'javascript-catalog' %}"></script>
+<script type="text/javascript" src="{% static '/admin/js/core.js' %}"></script>
+<link rel="stylesheet" type="text/css" href="{% static '/admin/css/widgets.css' %}">
+<style>.calendar>table>caption{caption-side:unset}</style>
+{{ form.media }}       
+
+{% block title %}{% endblock %}
+{% block content %}
+    <div class="content">
+        <form method="GET">
+        <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+        {{ form }}  
+        <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+        <div class="input-group-text">
+        <i class="fa fa-calendar"></i>
+        <p><input type="submit" value="Find"></p>
+        </div>    
+        </div>
+        </div>
+        </form>
+    </div>
+
+{% if data_list %} 
+    {% for data in data_list %}
+        <p> <span class="title"> city:</span>
+            <span class="title"> {{ data.city }}</span>
+            <br>country cod: 
+            <span class="title"> {{ data.country }}</span>
+            <br> weater-main:
+            <span class="title"> {{ data.main }}</span>
+            <br> description: 
+            <span class="title">{{ data.description }}</span>
+            <br> base:
+            <span class="title"> {{ data.base }}</span>
+            <br> temperature: 
+            <span class="title">{{ data.temp }}° F</span>
+            <br> temperature min:
+            <span class="title"> {{ data.temp_min }} ° F</span>
+            <br> temperature max:
+            <span class="title"> {{ data.temp_max }} ° F</span>
+            <br> pressure:
+            <span class="title"> {{ data.pressure }}</span>
+            <br> humidity:
+            <span class="title"> {{ data.humidity }}</span>
+            <br> visibility:
+            <span class="title"> {{ data.visibility }}</span>
+            <br> wind speed:
+            <span class="title"> {{ data.wind_speed }}</span>            
+            <br> clouds all:
+            <span class="title"> {{ data.clouds_all }}</span>
+            <br> data:
+            <span class="title"> {{ data.data }}</span>
+         </p>  
+        <hr>
+    {% endfor %}
+    
+{% else %}
+    <p>In the {{request.GET.city}} from {{request.GET.data_from}} to {{request.GET.data_to}} there is no data.</p>
+{% endif %}
+{% endblock %}
+{% block content1 %}
+<div class="pagination">
+    <span class="step-links">
+        {% if data_list.has_previous %}
+            <a href="?page=1">&laquo; first </a>
+            <a href="?page={{ data_list.previous_page_number }}"> previous </a>
+
+        {% endif %}
+        <span class="current">
+            Page {{ data_list.number }} of {{ data_list.paginator.num_pages }}.
+        </span>
+        {% if data_list.has_next %}
+            <a href="?page={{ data_list.next_page_number }}"> next </a>
+            <a href="?page={{ data_list.paginator.num_pages }}"> last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+{% endblock %}
+

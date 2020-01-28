@@ -1,0 +1,56 @@
+{% load static %}
+   <div>
+        <h1>
+        Mini weather portal
+        </h1>
+    </div>
+     {% if data1 %}
+    <div class="content">
+        <h3>An error is missing from the specified '{{ data1.city }}'.</h3>
+       <div>
+    {% endif %}
+    <div class="content">
+        <form method="POST">
+         {{ form }}   
+        {% csrf_token %}
+        <div>
+            <p><input type="submit" value="Find"></p>              
+        </div>
+        </form>       
+    </div>
+    {% if data %}
+    <div class="content">
+        <div>
+            <img src="http://openweathermap.org/img/w/{{ data.icon }}.png" alt="Image">
+        </div>
+        <div>
+         <p><span class="title"> city:</span>
+            <span class="title"> {{ data.city }}</span>
+            <br>country cod: 
+            <span class="title"> {{ data.country }}</span>
+            <br> weater-main:
+            <span class="title"> {{ data.main }}</span>
+            <br> description: 
+            <span class="title">{{ data.description }}</span>
+            <br> base:
+            <span class="title"> {{ data.base }}</span>
+            <br> temperature: 
+            <span class="title">{{ data.temp }}° F</span>
+            <br> temperature min:
+            <span class="title"> {{ data.temp_min }}° F</span>
+            <br> temperature max:
+            <span class="title"> {{ data.temp_max }}° F</span>
+            <br> pressure:
+            <span class="title"> {{ data.pressure }}</span>
+            <br> humidity:
+            <span class="title"> {{ data.humidity }}</span>
+            <br> visibility:
+            <span class="title"> {{ data.visibility }}</span>
+            <br> wind speed:
+            <span class="title"> {{ data.wind_speed }}</span>            
+            <br> clouds all:
+            <span class="title"> {{ data.clouds_all }}</span>
+         </p>   
+        </div>
+    </div>
+{% endif %}
